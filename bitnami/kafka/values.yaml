@@ -68,7 +68,7 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/kafka
+  repository: lolocompany/bitnami-docker-kafka
   tag: 3.2.1-debian-11-r9
   digest: ""
   ## Specify a imagePullPolicy
@@ -118,6 +118,15 @@ image:
 ##   group.initial.rebalance.delay.ms=0
 ##
 config: ""
+
+##  @param Additional Manual Values can be appended to server.properties here
+##
+## e.g:
+## additionalConfig: |-
+##   log.cleanup.policy=compact
+##   log.retention.ms=-1
+additionalConfig: ""
+
 ## @param existingConfigmap ConfigMap with Kafka Configuration
 ## NOTE: This will override `config` AND any KAFKA_CFG_ environment variables
 ##

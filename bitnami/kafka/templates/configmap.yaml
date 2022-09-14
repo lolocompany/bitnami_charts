@@ -15,3 +15,18 @@ data:
   server.properties: |-
     {{ .Values.config | nindent 4 }}
 {{- end -}}
+---
+{{- if .Values.additionalConfig }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s" (include "common.names.fullname" .) }}-additional-configuration
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+data:
+  additional.server.properties: |-
+{{ .Values.additionalConfig | indent 4 }}
+{{- end -}}
